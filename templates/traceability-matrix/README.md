@@ -26,27 +26,3 @@ After installing, add the following secrets to your repository:
 | `LIGHTWORKS_ORG_ID` | Your Lightworks organization ID |
 
 Then configure the test result path in `.github/workflows/post-test.yml` to match your test runner's output format (JUnit XML by default).
-
-## Fields
-
-### Requirements
-
-| Field | Type | Description |
-|---|---|---|
-| `req_id` | text | Human-readable ID, e.g. `REQ-001` |
-| `title` | text | Short requirement statement |
-| `description` | text | Full requirement text |
-| `status` | select | `draft` · `active` · `deprecated` |
-| `linked_tests` | relation | Linked test cases |
-| `coverage_status` | select | `uncovered` · `partial` · `covered` — updated by Action |
-
-### Tests
-
-| Field | Type | Description |
-|---|---|---|
-| `test_id` | text | Human-readable ID, e.g. `TEST-001` |
-| `title` | text | Short test description |
-| `linked_requirements` | relation | Linked requirements |
-| `last_run_status` | select | `pending` · `passed` · `failed` · `skipped` — updated by Action |
-| `last_run_at` | date | Timestamp of last execution — updated by Action |
-| `run_url` | url | Link to CI run — updated by Action |
