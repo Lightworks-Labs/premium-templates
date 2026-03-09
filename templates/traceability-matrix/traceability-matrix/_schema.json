@@ -1,0 +1,11 @@
+{
+  "properties": {
+    "requirement_id": { "type": "text" },
+    "description": { "type": "text" },
+    "source": { "type": "text" },
+    "verification_method": { "type": "multi-select", "options": ["test", "inspection", "analysis", "demonstration"] },
+    "status": { "type": "multi-select", "options": ["draft", "approved", "verified", "failed"] },
+    "risk_level": { "type": "multi-select", "options": ["low", "medium", "high"] },
+    "linked_test": { "type": "text" }
+  }
+}
