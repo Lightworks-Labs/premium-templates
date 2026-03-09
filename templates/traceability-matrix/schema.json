@@ -1,0 +1,44 @@
+{
+  "databases": [
+    {
+      "id": "traceability-matrix",
+      "name": "Traceability Matrix",
+      "description": "Link requirements to verification evidence",
+      "properties": {
+        "requirement_id": {
+          "type": "text",
+          "label": "Requirement ID",
+          "required": true
+        },
+        "description": {
+          "type": "text",
+          "label": "Description"
+        },
+        "source": {
+          "type": "text",
+          "label": "Source"
+        },
+        "verification_method": {
+          "type": "multi-select",
+          "label": "Verification Method",
+          "options": ["test", "inspection", "analysis", "demonstration"]
+        },
+        "status": {
+          "type": "multi-select",
+          "label": "Status",
+          "options": ["draft", "approved", "verified", "failed"]
+        },
+        "risk_level": {
+          "type": "multi-select",
+          "label": "Risk Level",
+          "options": ["low", "medium", "high"]
+        },
+        "linked_test": {
+          "type": "text",
+          "label": "Linked Test ID"
+        }
+      }
+    }
+  ],
+  "relationships": []
+}
