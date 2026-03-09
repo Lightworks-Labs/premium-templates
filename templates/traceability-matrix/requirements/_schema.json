@@ -1,0 +1,12 @@
+{
+  "properties": {
+    "req_id": { "type": "text" },
+    "title": { "type": "text" },
+    "description": { "type": "text" },
+    "status": { "type": "select", "options": ["draft", "active", "deprecated"] },
+    "linked_tests": { "type": "relation", "relation_to": "tests" },
+    "coverage_status": { "type": "select", "options": ["uncovered", "partial", "covered"] },
+    "created_at": { "type": "date" },
+    "updated_at": { "type": "date" }
+  }
+}
