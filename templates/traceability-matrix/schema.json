@@ -1,44 +1,49 @@
 {
+  "version": "1.0.0",
   "databases": [
     {
-      "id": "traceability-matrix",
-      "name": "Traceability Matrix",
-      "description": "Link requirements to verification evidence",
-      "properties": {
-        "requirement_id": {
-          "type": "text",
-          "label": "Requirement ID",
-          "required": true
-        },
-        "description": {
-          "type": "text",
-          "label": "Description"
-        },
-        "source": {
-          "type": "text",
-          "label": "Source"
-        },
-        "verification_method": {
-          "type": "multi-select",
-          "label": "Verification Method",
-          "options": ["test", "inspection", "analysis", "demonstration"]
-        },
-        "status": {
-          "type": "multi-select",
-          "label": "Status",
-          "options": ["draft", "approved", "verified", "failed"]
-        },
-        "risk_level": {
-          "type": "multi-select",
-          "label": "Risk Level",
-          "options": ["low", "medium", "high"]
-        },
-        "linked_test": {
-          "type": "text",
-          "label": "Linked Test ID"
-        }
-      }
+      "id": "requirements",
+      "name": "Requirements",
+      "description": "System requirements linked to verification evidence.",
+      "is_traceability_source": true,
+      "fields": [
+        { "id": "req_id", "name": "Requirement ID", "type": "text", "required": true, "description": "Human-readable ID, e.g. REQ-001" },
+        { "id": "title", "name": "Title", "type": "text", "required": true, "description": "Short requirement statement." },
+        { "id": "description", "name": "Description", "type": "text", "required": false, "description": "Full requirement text." },
+        { "id": "status", "name": "Status", "type": "select", "required": true, "options": ["draft", "active", "deprecated"] },
+        { "id": "linked_tests", "name": "Linked Tests", "type": "relation", "required": false, "relation_to": "tests", "description": "Many-to-many: linked test records." },
+        { "id": "coverage_status", "name": "Coverage Status", "type": "select", "required": false, "options": ["uncovered", "partial", "covered"], "description": "Computed by post-test.yml GitHub Action." },
+        { "id": "created_at", "name": "Created At", "type": "date", "required": true },
+        { "id": "updated_at", "name": "Updated At", "type": "date", "required": true }
+      ]
+    },
+    {
+      "id": "tests",
+      "name": "Tests",
+      "description": "Test cases and their latest execution results.",
+      "is_traceability_target": true,
+      "fields": [
+        { "id": "test_id", "name": "Test ID", "type": "text", "required": true, "description": "Human-readable ID, e.g. TEST-001" },
+        { "id": "title", "name": "Title", "type": "text", "required": true, "description": "Short test description." },
+        { "id": "linked_requirements", "name": "Linked Requirements", "type": "relation", "required": false, "relation_to": "requirements", "description": "Back-reference to linked requirement records." },
+        { "id": "last_run_status", "name": "Last Run Status", "type": "select", "required": false, "options": ["pending", "passed", "failed", "skipped"], "description": "Written by post-test.yml GitHub Action." },
+        { "id": "last_run_at", "name": "Last Run At", "type": "date", "required": false, "description": "Timestamp of last test execution. Written by Action." },
+        { "id": "run_url", "name": "Run URL", "type": "url", "required": false, "description": "Link to the CI run. Written by Action." },
+        { "id": "created_at", "name": "Created At", "type": "date", "required": true },
+        { "id": "updated_at", "name": "Updated At", "type": "date", "required": true }
+      ]
     }
   ],
-  "relationships": []
+  "relationships": [
+    {
+      "id": "req-test-link",
+      "source_database": "requirements",
+      "target_database": "tests",
+      "source_field": "linked_tests",
+      "target_field": "linked_requirements",
+      "cardinality": "many_to_many",
+      "bidirectional": true,
+      "enforced_by_action": true
+    }
+  ]
 }
