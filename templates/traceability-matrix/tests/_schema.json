@@ -1,0 +1,12 @@
+{
+  "properties": {
+    "test_id": { "type": "text" },
+    "title": { "type": "text" },
+    "linked_requirements": { "type": "relation", "relation_to": "requirements" },
+    "last_run_status": { "type": "select", "options": ["pending", "passed", "failed", "skipped"] },
+    "last_run_at": { "type": "date" },
+    "run_url": { "type": "url" },
+    "created_at": { "type": "date" },
+    "updated_at": { "type": "date" }
+  }
+}
