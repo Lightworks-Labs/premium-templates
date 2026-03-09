@@ -1,0 +1,15 @@
+{
+  "id": "traceability-matrix",
+  "name": "Traceability Matrix",
+  "version": "1.0.0",
+  "subtype": "bundle",
+  "tier": "premium",
+  "description": "Link requirements to design outputs, test cases, and verification activities for IEC 62304 and ISO 13485 compliance.",
+  "tags": ["qms", "requirements", "verification", "iec-62304", "iso-13485"],
+  "databases": ["traceability-matrix"],
+  "workflows": [],
+  "requires_subscription": true,
+  "min_lightworks_version": "1.0.0",
+  "created_at": "2026-03-09T00:00:00Z",
+  "updated_at": "2026-03-09T00:00:00Z"
+}
