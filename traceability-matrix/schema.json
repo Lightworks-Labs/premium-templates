@@ -45,5 +45,16 @@
       "bidirectional": true,
       "enforced_by_action": true
     }
+  ],
+  "views": [
+    {
+      "type": "matrix",
+      "id": "req-test-matrix",
+      "name": "Traceability Matrix",
+      "source_database": "requirements",
+      "target_database": "tests",
+      "link_field": "linked_tests",
+      "status_field": "last_run_status"
+    }
   ]
 }
